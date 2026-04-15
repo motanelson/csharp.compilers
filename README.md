@@ -1,4 +1,1 @@
-# for.language
-
-separete of fords
-
+template to a csharp compiler
