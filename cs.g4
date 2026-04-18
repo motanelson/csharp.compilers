@@ -1,77 +1,200 @@
 grammar cs;
 
 // =====================
-// Programa
+// PROGRAMA
 // =====================
-programa : classe * EOF ;
+programa
+    : classe* EOF
+    ;
 
 // =====================
-// Classes
+// CLASSES
 // =====================
-classe : 'class' ID '{' membroClasse* '}' ;
+classe
+    : 'class' ID '{' membroClasse* '}'
+    ;
+
+membroClasse
+    : metodo
+    | variavel
+    ;
 
 // =====================
-// Membros
+// MÉTODOS
 // =====================
-membroClasse : metodo
-             | variavel
-             ;
+metodo
+    : tipo ID '(' parametroLista? ')' bloco
+    ;
+
+parametroLista
+    : parametro (',' parametro)*
+    ;
+
+parametro
+    : tipo ID
+    ;
 
 // =====================
-// Métodos
+// VARIÁVEIS
 // =====================
-metodo : tipo ID '(' parametroLista? ')' bloco ;
-
-parametroLista : parametro (',' parametro)* ;
-
-parametro : tipo ID ;
+variavel
+    : tipo ID ('=' expressao)? ';'
+    ;
 
 // =====================
-// Variáveis
+// BLOCO
 // =====================
-variavel : tipo ID ( '=' expressao )? ';' ;
+bloco
+    : '{' instrucao* '}'
+    ;
 
 // =====================
-// Blocos
+// INSTRUÇÕES
 // =====================
-bloco : '{' instrucao* '}' ;
+instrucao
+    : variavel
+    | atribuicao ';'
+    | chamadaMetodo ';'
+    | retorno
+    | ifInstrucao
+    | whileInstrucao
+    | forInstrucao
+    | bloco
+    ;
 
 // =====================
-// Instruções
+// ATRIBUIÇÃO
 // =====================
-instrucao : variavel
-          | chamadaMetodo ';'
-          | retorno
-          | bloco
-          ;
+atribuicao
+    : acesso '=' expressao
+    ;
 
 // =====================
-// Retorno
+// IF / ELSE
 // =====================
-retorno : 'return' expressao? ';' ;
+ifInstrucao
+    : 'if' '(' expressao ')' instrucao ('else' instrucao)?
+    ;
 
 // =====================
-// Funções / chamadas
+// WHILE
 // =====================
-chamadaMetodo : ID '(' argumentoLista? ')' ;
-
-argumentoLista : expressao (',' expressao)* ;
-
-// =====================
-// Expressões (básico mas extensível)
-// =====================
-expressao : ID
-          | NUMBER
-          | chamadaMetodo ;
+whileInstrucao
+    : 'while' '(' expressao ')' instrucao
+    ;
 
 // =====================
-// Tipos
+// FOR
 // =====================
-tipo : 'int' | 'float' | 'bool' | 'string' | ID ;
+forInstrucao
+    : 'for' '(' forInit? ';' expressao? ';' forUpdate? ')' instrucao
+    ;
+
+forInit
+    : variavel | atribuicao
+    ;
+
+forUpdate
+    : atribuicao
+    ;
 
 // =====================
-// Lexer
+// RETURN
 // =====================
-ID : [a-zA-Z_][a-zA-Z_0-9]* ;
-NUMBER : [0-9]+ ;
-WS : [ \t\r\n]+ -> skip ;
+retorno
+    : 'return' expressao? ';'
+    ;
+
+// =====================
+// CHAMADAS
+// =====================
+chamadaMetodo
+    : acesso '(' argumentoLista? ')'
+    ;
+
+argumentoLista
+    : expressao (',' expressao)*
+    ;
+
+// =====================
+// EXPRESSÕES (com precedência correta)
+// =====================
+expressao
+    : logicoOu
+    ;
+
+logicoOu
+    : logicoE ('||' logicoE)*
+    ;
+
+logicoE
+    : igualdade ('&&' igualdade)*
+    ;
+
+igualdade
+    : comparacao (('==' | '!=') comparacao)*
+    ;
+
+comparacao
+    : soma (('>' | '<' | '>=' | '<=') soma)*
+    ;
+
+soma
+    : termo (('+' | '-') termo)*
+    ;
+
+termo
+    : fator (('*' | '/' | '%') fator)*
+    ;
+
+fator
+    : ('+' | '-' | '!') fator
+    | primario
+    ;
+
+primario
+    : NUMBER
+    | BOOL
+    | STRING
+    | acesso
+    | chamadaMetodo
+    | '(' expressao ')'
+    ;
+
+// =====================
+// ACESSO A MEMBROS
+// =====================
+acesso
+    : thisRef ('.' ID)*
+    ;
+
+thisRef
+    : 'this'
+    | ID
+    ;
+
+// =====================
+// TIPOS
+// =====================
+tipo
+    : 'int'
+    | 'float'
+    | 'bool'
+    | 'string'
+    | 'void'
+    | ID
+    ;
+
+// =====================
+// LEXER
+// =====================
+ID      : [a-zA-Z_][a-zA-Z_0-9]* ;
+NUMBER  : [0-9]+ ('.' [0-9]+)? ;
+STRING  : '"' (~["\\] | '\\' .)* '"' ;
+BOOL    : 'true' | 'false' ;
+
+WS      : [ \t\r\n]+ -> skip ;
+
+// comentários opcionais
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip ;

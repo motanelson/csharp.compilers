@@ -97,6 +97,66 @@ public interface csListener extends ParseTreeListener {
 	 */
 	void exitInstrucao(csParser.InstrucaoContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link csParser#atribuicao}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtribuicao(csParser.AtribuicaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#atribuicao}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtribuicao(csParser.AtribuicaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#ifInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfInstrucao(csParser.IfInstrucaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#ifInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfInstrucao(csParser.IfInstrucaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#whileInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileInstrucao(csParser.WhileInstrucaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#whileInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileInstrucao(csParser.WhileInstrucaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#forInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void enterForInstrucao(csParser.ForInstrucaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#forInstrucao}.
+	 * @param ctx the parse tree
+	 */
+	void exitForInstrucao(csParser.ForInstrucaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#forInit}.
+	 * @param ctx the parse tree
+	 */
+	void enterForInit(csParser.ForInitContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#forInit}.
+	 * @param ctx the parse tree
+	 */
+	void exitForInit(csParser.ForInitContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#forUpdate}.
+	 * @param ctx the parse tree
+	 */
+	void enterForUpdate(csParser.ForUpdateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#forUpdate}.
+	 * @param ctx the parse tree
+	 */
+	void exitForUpdate(csParser.ForUpdateContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link csParser#retorno}.
 	 * @param ctx the parse tree
 	 */
@@ -136,6 +196,106 @@ public interface csListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpressao(csParser.ExpressaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#logicoOu}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicoOu(csParser.LogicoOuContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#logicoOu}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicoOu(csParser.LogicoOuContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#logicoE}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicoE(csParser.LogicoEContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#logicoE}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicoE(csParser.LogicoEContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#igualdade}.
+	 * @param ctx the parse tree
+	 */
+	void enterIgualdade(csParser.IgualdadeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#igualdade}.
+	 * @param ctx the parse tree
+	 */
+	void exitIgualdade(csParser.IgualdadeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#comparacao}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparacao(csParser.ComparacaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#comparacao}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparacao(csParser.ComparacaoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#soma}.
+	 * @param ctx the parse tree
+	 */
+	void enterSoma(csParser.SomaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#soma}.
+	 * @param ctx the parse tree
+	 */
+	void exitSoma(csParser.SomaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#termo}.
+	 * @param ctx the parse tree
+	 */
+	void enterTermo(csParser.TermoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#termo}.
+	 * @param ctx the parse tree
+	 */
+	void exitTermo(csParser.TermoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#fator}.
+	 * @param ctx the parse tree
+	 */
+	void enterFator(csParser.FatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#fator}.
+	 * @param ctx the parse tree
+	 */
+	void exitFator(csParser.FatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#primario}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimario(csParser.PrimarioContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#primario}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimario(csParser.PrimarioContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#acesso}.
+	 * @param ctx the parse tree
+	 */
+	void enterAcesso(csParser.AcessoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#acesso}.
+	 * @param ctx the parse tree
+	 */
+	void exitAcesso(csParser.AcessoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link csParser#thisRef}.
+	 * @param ctx the parse tree
+	 */
+	void enterThisRef(csParser.ThisRefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link csParser#thisRef}.
+	 * @param ctx the parse tree
+	 */
+	void exitThisRef(csParser.ThisRefContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link csParser#tipo}.
 	 * @param ctx the parse tree
